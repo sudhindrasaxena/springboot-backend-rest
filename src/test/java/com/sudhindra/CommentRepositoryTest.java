@@ -6,8 +6,8 @@
 
 package com.sudhindra;
 
-import com.real.interview.entities.Comment;
-import com.real.interview.repository.CommentRepository;
+import com.sudhindra.entities.Comment;
+import com.sudhindra.repository.CommentRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;

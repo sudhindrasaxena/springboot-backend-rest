@@ -6,6 +6,8 @@
 
 package com.sudhindra.service.impl;
 
+import com.sudhindra.dto.CommentsRequest;
+import com.sudhindra.dto.CommentsResponse;
 import com.sudhindra.entities.Comment;
 import com.sudhindra.repository.CommentRepository;
 import com.sudhindra.service.ICommentService;
@@ -49,5 +51,39 @@ public class CommentService implements ICommentService {
     @Override
     public List<Comment> fetchAllCommentsForPost(Long postId) {
         return commentRepository.findAllByPostId(postId);
+    }
+
+    @Override
+    public Comment deleteCommentForId(Integer id) {
+        commentRepository.deleteById(id);
+        return Comment.builder()
+                .id(id)
+                .build();
+    }
+
+    @Override
+    public Comment addComment(CommentsRequest request) {
+        Comment comment = Comment.builder()
+                .id(request.getId())
+                .postId(request.getPostId())
+                .name(request.getName())
+                .email(request.getEmail())
+                .body(request.getBody())
+                .build();
+
+        return commentRepository.save(comment);
+    }
+
+    @Override
+    public Comment updateComment(CommentsRequest request) {
+        Comment comment = Comment.builder()
+                .id(request.getId())
+                .postId(request.getPostId())
+                .name(request.getName())
+                .email(request.getEmail())
+                .body(request.getBody())
+                .build();
+
+        return commentRepository.save(comment);
     }
 }
